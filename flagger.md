@@ -1,7 +1,7 @@
 ## Introduction
 
 Alongside with reaping stale channels, Destalinator runs a flagging service
-that copies some of the messages from the last day into a summary channel.
+that copies some of the messages from the last four hours into a summary channel.
 
 ## Source Code
 

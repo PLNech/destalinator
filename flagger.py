@@ -198,12 +198,12 @@ class Flagger(executor.Executor):
         """
         returns [[message, [listofchannelstoannounce]]
         """
-        dayago = self.now - 86400
+        four_hours_ago = self.now - 14400
 
         messages = []
         for channel in self.slacker.channels_by_name:
             cid = self.slacker.get_channelid(channel)
-            cur_messages = self.slacker.get_messages_in_time_range(dayago, cid, self.now)
+            cur_messages = self.slacker.get_messages_in_time_range(four_hours_ago, cid, self.now)
             for message in cur_messages:
                 announce = self.message_destination(message)
                 if announce:
