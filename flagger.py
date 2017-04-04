@@ -154,6 +154,8 @@ class Flagger(executor.Executor):
         emoji_set = set(self.emoji)
         current_reactions = {}
         t = message.get("text")
+        if t is None:
+            return False
         if t.find("SVP") != -1:
             def d(p):
                 pass  # print p
