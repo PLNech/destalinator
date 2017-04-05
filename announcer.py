@@ -12,13 +12,13 @@ class Announcer(executor.Executor):
 
     def get_new_channels(self):
         """
-        returns [(channel_name, creator, purpose)] created in the last 4 hours
+        returns [(channel_name, creator, purpose)] created in the last 24 hours
         """
 
         now = int(time.time())
-        four_hours_ago = now - 14400
+        dayago = now - 86400
         channels = self.slacker.get_all_channel_objects()
-        new_channels = [channel for channel in channels if channel['created'] > four_hours_ago]
+        new_channels = [channel for channel in channels if channel['created'] > dayago]
         new = []
         for new_channel in new_channels:
             purpose = self.slacker.asciify(new_channel['purpose']['value'])

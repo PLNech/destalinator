@@ -9,7 +9,7 @@ import os
 logging.basicConfig()
 sched = BlockingScheduler()
 
-@sched.scheduled_job("cron", hour=4)
+@sched.scheduled_job("cron", hour=24)
 # @sched.scheduled_job("cron", hour="*", minute="*/10") # for testing
 def destalinate_job():
     print("Destalinating")
