@@ -198,7 +198,7 @@ class Flagger(executor.Executor):
         """
         returns [[message, [listofchannelstoannounce]]
         """
-        dayago = self.now - 86400
+        dayago = self.now - (86400 * 3)
 
         messages = []
         for channel in self.slacker.channels_by_name:
