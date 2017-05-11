@@ -25,7 +25,8 @@ class Announcer(executor.Executor):
             creator = new_channel['creator']
             friendly = self.slacker.asciify(self.slacker.users_by_id[creator])
             name = self.slacker.asciify(new_channel['name'])
-            new.append((name, friendly, purpose))
+            if is_real_channel(name):
+                new.append((name, friendly, purpose))
         return new
 
     def announce(self):
@@ -39,6 +40,14 @@ class Announcer(executor.Executor):
                     self.ds.warning("Attempted to announce in {}, but channel does not exist.".format(config.announce_channel))
             print("ANNOUNCE: {}".format(m))
 
+    def is_real_channel(name):
+        """
+        returns True if this channel is not a temporary channel 
+        """
+        if name.startswith("z-"): # Live-chat channel
+            return False
+
+        return True
 
 if __name__ == "__main__":
     announcer = Announcer()
