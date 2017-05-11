@@ -25,7 +25,7 @@ class Announcer(executor.Executor):
             creator = new_channel['creator']
             friendly = self.slacker.asciify(self.slacker.users_by_id[creator])
             name = self.slacker.asciify(new_channel['name'])
-            if is_real_channel(name):
+            if self.is_real_channel(name):
                 new.append((name, friendly, purpose))
         return new
 
@@ -40,7 +40,7 @@ class Announcer(executor.Executor):
                     self.ds.warning("Attempted to announce in {}, but channel does not exist.".format(config.announce_channel))
             print("ANNOUNCE: {}".format(m))
 
-    def is_real_channel(name):
+    def is_real_channel(self, name):
         """
         returns True if this channel is not a temporary channel 
         """
