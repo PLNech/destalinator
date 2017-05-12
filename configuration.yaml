@@ -29,10 +29,10 @@ earliest_archive_date: "2016-01-28"
 general_message_channel: "algolia"
 
 # Where should we announce new channels?
-announce_channel: "misc-channels"
+announce_channel: "meta-channels"
 
 # Where do we send control messages?
-control_channel: "misc-bot-control"
+control_channel: "meta-bot-control"
 
 # Where to send destalinator debug logs
 log_channel: "misc-destalinator-log"
