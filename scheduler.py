@@ -21,7 +21,7 @@ def destalinate_job():
         # scheduled_warner = warner.Warner()
         # scheduled_archiver = archiver.Archiver()
         scheduled_announcer = announcer.Announcer()
-        scheduled_flagger = flagger.Flagger()
+        scheduled_flagger = flagger.Flagger(verbose=True)
         # print("Warning")
         # scheduled_warner.warn()
         # print("Archiving")
