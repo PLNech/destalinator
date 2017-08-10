@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from apscheduler.schedulers.blocking import BlockingScheduler
 import logging
 # import warner
