@@ -59,18 +59,23 @@ class Slacker(object):
         assert cid in self.channels_by_id, "Unknown channel ID {}".format(cid)
         cname = self.channels_by_id[cid]
         messages = []
-        done = False
-        while not done:
+        while True:
             murl = self.url + "channels.history?oldest={}&token={}&channel={}".format(oldest, self.token, cid)
             if latest:
                 murl += "&latest={}".format(latest)
             else:
                 murl += "&latest={}".format(int(time.time()))
             payload = requests.get(murl).json()
-            messages += payload['messages']
-            if payload['has_more'] is False:
-                done = True
-                continue
+            if "messages" in payload:
+                messages += payload['messages']
+            else:
+                print("Payload has no messages: \n%s\n\n" % payload)
+                if "error" in payload:
+                    if payload["error"] == 'ratelimited':
+                        print("Rate limit hit.")
+                        break
+            if 'has_more' not in payload or payload['has_more'] is False:
+                break
             ts = [float(x['ts']) for x in messages]
             earliest = min(ts)
             latest = earliest
