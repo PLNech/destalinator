@@ -72,7 +72,8 @@ class Slacker(object):
                 print("Payload has no messages: \n%s\n\n" % payload)
                 if "error" in payload:
                     if payload["error"] == 'ratelimited':
-                        print("Rate limit hit.")
+                        print("Rate limit hit. Sleeping one second.")
+                        time.sleep(1)
                         break
             if 'has_more' not in payload or payload['has_more'] is False:
                 break
